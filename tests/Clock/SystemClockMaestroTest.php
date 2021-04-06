@@ -45,7 +45,7 @@ class SystemClockMaestroTest extends TestCase
         $this->assertEquals($timezone, $now->getTimezone());
     }
 
-    public function testRespectTimezone()
+    public function testNowIsTicking()
     {
         $timezone = new DateTimeZone('Europe/Warsaw');
         $clock = SystemClockMaestro::fromTimezone($timezone);
@@ -53,9 +53,11 @@ class SystemClockMaestroTest extends TestCase
         $before = new DateTimeImmutable('now', $timezone);
         $now = $clock->now();
         $after = new DateTimeImmutable('now', $timezone);
+        sleep(1);
+        $afterAfter = $clock->now();
 
-        $this->assertEquals($timezone, $now->getTimezone());
         $this->assertGreaterThanOrEqual($before, $now);
         $this->assertLessThanOrEqual($after, $now);
+        $this->assertLessThanOrEqual($afterAfter, $after);
     }
 }
