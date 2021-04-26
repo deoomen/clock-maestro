@@ -64,4 +64,4 @@ $now = $clock->now();
 
 ## License
 
-[MIT License](https://github.com/deoomen/clock-maestro/blob/master/LICENSE)
+[MIT License](./LICENSE)
