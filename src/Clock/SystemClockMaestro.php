@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace ClockMaestro\Clock;
 
-use ClockMaestro\ClockMaestro;
+use ClockMaestro\ClockMaestroInterface;
 use DateTimeImmutable;
 use DateTimeZone;
 
-class SystemClockMaestro implements ClockMaestro
+class SystemClockMaestro implements ClockMaestroInterface
 {
     private DateTimeZone $timezone;
 
