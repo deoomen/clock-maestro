@@ -37,19 +37,4 @@ class FrozenClockMaestro implements ClockMaestroInterface
     {
         return $this->now;
     }
-
-    public function setTo(DateTimeImmutable $now): void
-    {
-        if ($now->getTimezone()->getName() !== $this->now->getTimezone()->getName()) {
-            throw new InvalidTimeZoneException(
-                sprintf(
-                    'Given time is in "%s" timezone but current clock is in "%s" timezone.',
-                    $now->getTimezone()->getName(),
-                    $this->now->getTimezone()->getName()
-                )
-            );
-        }
-
-        $this->now = $now;
-    }
 }
