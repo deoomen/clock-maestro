@@ -5,15 +5,12 @@ declare(strict_types=1);
 namespace ClockMaestro;
 
 use DateTimeImmutable;
-use DateTimeZone;
 
 interface ClockMaestroInterface
 {
-    // public static function fromTimezone(DateTimeZone $timezone): self;
-
-    // public static function fromSystemTimezone(): self;
-
-    // public static function fromUTC(): self;
-
     public function now(): DateTimeImmutable;
+
+    public function toString(string $format = DateTimeImmutable::ATOM): string;
+
+    public function __toString(): string;
 }
