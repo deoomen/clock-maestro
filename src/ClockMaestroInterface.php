@@ -7,7 +7,7 @@ namespace ClockMaestro;
 use DateTimeImmutable;
 use DateTimeZone;
 
-interface ClockMaestro
+interface ClockMaestroInterface
 {
     // public static function fromTimezone(DateTimeZone $timezone): self;
 

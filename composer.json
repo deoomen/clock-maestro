@@ -1,8 +1,8 @@
 {
     "name": "deoomen/clock-maestro",
-    "description": "desc",
+    "description": "Single source of truth about time and date in your application",
     "type": "library",
-    "keywords": ["time", "clock", "date"],
+    "keywords": ["time", "clock", "date", "manager", "SSOT"],
     "license": "MIT",
     "authors": [
         {

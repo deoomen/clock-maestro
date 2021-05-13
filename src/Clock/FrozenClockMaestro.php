@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace ClockMaestro\Clock;
 
-use ClockMaestro\ClockMaestro;
+use ClockMaestro\ClockMaestroInterface;
 use ClockMaestro\Exception\InvalidTimeZoneException;
 use DateTimeImmutable;
 use DateTimeZone;
 
-class FrozenClockMaestro implements ClockMaestro
+class FrozenClockMaestro implements ClockMaestroInterface
 {
     private DateTimeImmutable $now;
 
