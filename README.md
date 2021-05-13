@@ -35,6 +35,14 @@ $now = $clock->now();
 $timezone = new DateTimeZone('Mexico/General');
 $clock = FrozenClockMaestro::fromTimezone($timezone);
 $now = $clock->now();
+
+// Get time as string with default format: `Y-m-d\TH:i:sP` - (ATOM, compatible with ISO-8601 format)
+$clock = FrozenClockMaestro::fromUTC();
+$nowAsString = $clock->toString();  // ex. 2021-05-13T12:30:00+00:00
+
+// Get time as string with custom foramt
+$clock = FrozenClockMaestro::fromUTC();
+$nowAsString = $clock->toString('d.m.Y H:i');  // ex. 13.05.2021 12:30
 ```
 
 ### System clock
@@ -60,6 +68,14 @@ $now = $clock->now();
 $timezone = new DateTimeZone('Mexico/General');
 $clock = SystemClockMaestro::fromTimezone($timezone);
 $now = $clock->now();
+
+// Get time as string with default format: `Y-m-d\TH:i:sP` - (ATOM, compatible with ISO-8601 format)
+$clock = SystemClockMaestro::fromUTC();
+$nowAsString = $clock->toString();  // ex. 2021-05-13T12:30:00+00:00
+
+// Get time as string with custom foramt
+$clock = SystemClockMaestro::fromUTC();
+$nowAsString = $clock->toString('d.m.Y H:i');  // ex. 13.05.2021 12:30
 ```
 
 ## License
