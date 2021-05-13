@@ -57,26 +57,12 @@ class FrozenClockMaestroTest extends TestCase
         $this->assertEquals($before, $after);
     }
 
-    public function testSetToException()
+    public function testToString()
     {
-        $this->expectException(InvalidTimeZoneException::class);
+        $time = '2021-05-13T12:35:00+00:00';
+        $clock = FrozenClockMaestro::fromUTC($time);
 
-        $clock = FrozenClockMaestro::fromTimezone(new DateTimeZone('Europe/Warsaw'));
-        $clock->setTo(new DateTimeImmutable('now', new DateTimeZone('Asia/Dubai')));
-    }
-
-    public function testSetTo()
-    {
-        $timezone = new DateTimeZone('Europe/Warsaw');
-        $clock = FrozenClockMaestro::fromTimezone($timezone);
-        $now = $clock->now();
-
-        $clock->setTo(new DateTimeImmutable('yesterday', $timezone));
-        $before = $clock->now();
-        $clock->setTo(new DateTimeImmutable('tomorrow', $timezone));
-        $after = $clock->now();
-
-        $this->assertGreaterThan($before, $now);
-        $this->assertGreaterThan($now, $after);
+        $this->assertSame($time, $clock->toString());
+        $this->assertSame($time, (string) $clock);
     }
 }

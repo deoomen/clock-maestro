@@ -36,4 +36,14 @@ class SystemClockMaestro implements ClockMaestroInterface
     {
         return new DateTimeImmutable('now', $this->timezone);
     }
+
+    public function toString(string $format = DateTimeImmutable::ATOM): string
+    {
+        return $this->now()->format($format);
+    }
+
+    public function __toString(): string
+    {
+        return $this->toString();
+    }
 }
