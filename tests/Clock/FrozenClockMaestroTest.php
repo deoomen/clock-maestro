@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace ClockMaestro\Tests;
 
 use ClockMaestro\Clock\FrozenClockMaestro;
-use ClockMaestro\Exception\InvalidTimeZoneException;
-use DateTimeImmutable;
 use DateTimeZone;
 use PHPUnit\Framework\TestCase;
 
@@ -64,5 +62,25 @@ class FrozenClockMaestroTest extends TestCase
 
         $this->assertSame($time, $clock->toString());
         $this->assertSame($time, (string) $clock);
+    }
+
+    public function testConvertTimezone(): void
+    {
+        $timestamp = "2021-05-27 12:00:00 Europe/Warsaw";
+        $clock = FrozenClockMaestro::fromString($timestamp);
+
+        $clock->convertTimezone(new DateTimeZone('UTC'));
+
+        $this->assertEquals('UTC', $clock->now()->getTimezone()->getName());
+    }
+
+    public function testTimeCorrectConvertTimezone(): void
+    {
+        $timestamp = "2021-05-27 12:00:00 UTC";
+        $clock = FrozenClockMaestro::fromString($timestamp);
+
+        $clock->convertTimezone(new DateTimeZone('GMT+1'));
+
+        $this->assertEquals('2021-05-27 13:00:00', $clock->now()->format('Y-m-d H:i:s'));
     }
 }
