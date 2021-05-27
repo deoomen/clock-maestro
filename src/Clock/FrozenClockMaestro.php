@@ -33,6 +33,11 @@ class FrozenClockMaestro implements ClockMaestroInterface
         return self::fromTimezone(new DateTimeZone('UTC'), $time);
     }
 
+    public static function fromString(string $timestamp = 'now'): self
+    {
+        return new self(new DateTimeImmutable($timestamp));
+    }
+
     public function now(): DateTimeImmutable
     {
         return $this->now;
