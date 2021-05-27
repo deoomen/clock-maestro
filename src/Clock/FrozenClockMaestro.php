@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ClockMaestro\Clock;
 
 use ClockMaestro\ClockMaestroInterface;
+use DateTime;
 use DateTimeImmutable;
 use DateTimeZone;
 
@@ -32,9 +33,19 @@ class FrozenClockMaestro implements ClockMaestroInterface
         return self::fromTimezone(new DateTimeZone('UTC'), $time);
     }
 
+    public static function fromString(string $timestamp = 'now'): self
+    {
+        return new self(new DateTimeImmutable($timestamp));
+    }
+
     public function now(): DateTimeImmutable
     {
         return $this->now;
+    }
+
+    public function convertTimezone(DateTimeZone $timezone): void
+    {
+        $this->now = DateTimeImmutable::createFromMutable(DateTime::createFromImmutable($this->now)->setTimezone($timezone));
     }
 
     public function toString(string $format = DateTimeImmutable::ATOM): string

@@ -60,4 +60,24 @@ class SystemClockMaestroTest extends TestCase
         $this->assertLessThanOrEqual($after, $now);
         $this->assertLessThanOrEqual($afterAfter, $after);
     }
+
+    public function testConvertTimezone(): void
+    {
+        $clock = SystemClockMaestro::fromTimezone(new DateTimeZone('Europe/Warsaw'));
+
+        $clock->convertTimezone(new DateTimeZone('UTC'));
+
+        $this->assertEquals('UTC', $clock->now()->getTimezone()->getName());
+    }
+
+    public function testTimeCorrectConvertTimezone(): void
+    {
+        $clock = SystemClockMaestro::fromTimezone(new DateTimeZone('UTC'));
+        $before = $clock->toString('Y-m-d H:i');
+
+        $clock->convertTimezone(new DateTimeZone('GMT+1'));
+        $after = $clock->toString('Y-m-d H:i');
+
+        $this->assertGreaterThan($before, $after);
+    }
 }
