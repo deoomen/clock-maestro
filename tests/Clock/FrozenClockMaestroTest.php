@@ -57,7 +57,7 @@ class FrozenClockMaestroTest extends TestCase
 
     public function testToString()
     {
-        $time = '2021-05-13T12:35:00+00:00';
+        $time = '2021-05-13T12:35:00UTC';
         $clock = FrozenClockMaestro::fromUTC($time);
 
         $this->assertSame($time, $clock->toString());

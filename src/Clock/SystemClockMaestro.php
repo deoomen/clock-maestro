@@ -42,7 +42,7 @@ class SystemClockMaestro implements ClockMaestroInterface
         $this->timezone = $timezone;
     }
 
-    public function toString(string $format = DateTimeImmutable::ATOM): string
+    public function toString(string $format = self::DEFAULT_FORMAT): string
     {
         return $this->now()->format($format);
     }

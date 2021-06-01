@@ -48,7 +48,7 @@ class FrozenClockMaestro implements ClockMaestroInterface
         $this->now = DateTimeImmutable::createFromMutable(DateTime::createFromImmutable($this->now)->setTimezone($timezone));
     }
 
-    public function toString(string $format = DateTimeImmutable::ATOM): string
+    public function toString(string $format = self::DEFAULT_FORMAT): string
     {
         return $this->now->format($format);
     }
